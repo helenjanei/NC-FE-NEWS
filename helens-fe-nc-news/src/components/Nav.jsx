@@ -17,8 +17,8 @@ const Nav = () => {
             </Link>
           </li>
           <li>
-            <Link className="nav-user-login" to="">
-              User Login
+            <Link className="nav-user-area" to="/users/jessjelly">
+              User Area
             </Link>
           </li>
           <li>

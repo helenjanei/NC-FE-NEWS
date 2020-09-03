@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import Loader from "./Loader";
-
-import * as api from "../utils/api.jsx";
+import CommentsList from "./CommentsList";
+import VoteHandler from "./VoteHandler";
+import * as api from "../utils/api";
 import ErrorHandler from "./ErrorHandler";
+import Nav from "./Nav";
+import "../App.css";
 
 class ArticleById extends Component {
   state = {
@@ -13,11 +16,12 @@ class ArticleById extends Component {
 
   render() {
     const {
+      article_id,
       title,
       author,
       body,
       topic,
-
+      votes,
       comment_count,
       created_at,
     } = this.state.articleById;
@@ -28,17 +32,30 @@ class ArticleById extends Component {
     if (err) return <ErrorHandler msg={err} />;
 
     return (
-      <article className="article-by-id">
-        <h2 className="topic-header">
-          {" "}
-          {topic.charAt(0).toUpperCase() + topic.slice(1)}
-        </h2>
-        <h2 className="title">{title}</h2>
-        <p>
-          by {author} {new Date(created_at).toLocaleString()}
-        </p>
-        <p>{body}</p> <p>🗣{comment_count} comments</p>
-      </article>
+      <div>
+        <Nav />
+        <div className="article-wrapper">
+          <div className="article">
+            <article className="article-by-id">
+              <h2 className="topic-header">
+                {" "}
+                {topic.charAt(0).toUpperCase() + topic.slice(1)}
+              </h2>
+              <h2 className="title">{title}</h2>
+              <p>
+                by {author} {new Date(created_at).toLocaleString()}
+              </p>
+              <p>{body}</p>
+              <VoteHandler votes={votes} article_id={article_id} />{" "}
+              <p> ⚘ {comment_count} comments</p>
+              <CommentsList
+                article_id={this.props.article_id}
+                username={this.props.username}
+              />
+            </article>
+          </div>
+        </div>
+      </div>
     );
   }
 
@@ -51,11 +68,12 @@ class ArticleById extends Component {
     api
       .getArticleById(article_id)
       .then((articleById) => {
-        this.setState({ articleById, isLoading: false });
+        this.setState({ articleById, isLoading: false, err: "" });
       })
       .catch((err) => {
         this.setState({ err: err.response.data.msg, isLoading: false });
       });
   };
 }
+
 export default ArticleById;

@@ -4,9 +4,8 @@ import * as api from "../utils/api.jsx";
 import Loader from "./Loader";
 import SortArticles from "./SortArticles.jsx";
 import ErrorHandler from "./ErrorHandler";
-import Nav from "./Nav";
 
-class AllArticles extends Component {
+class TopicsByTopic extends Component {
   state = {
     articles: [],
     isLoading: true,
@@ -19,21 +18,22 @@ class AllArticles extends Component {
     if (err) return <ErrorHandler msg={err} />;
     return (
       <div>
-        <Nav />
         <SortArticles handleSort={this.handleSort} />
-        <h1 className="latest-news">Latest News!</h1>
+        <h1 className="topic">{this.articles.topic}</h1>
 
         <ul className="all-articles">
           {this.state.articles.map((article) => {
-            return (
-              <div>
-                <div className="article-wrapper">
-                  <div className="article">
-                    <ArticleCard key={article.article_id} {...article} />
+            if (this.state.articles.topic === article.topic) {
+              return (
+                <div>
+                  <div className="article-wrapper">
+                    <div className="article">
+                      <ArticleCard key={article.article_id} {...article} />
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
+              );
+            }
           })}
         </ul>
       </div>
@@ -56,7 +56,6 @@ class AllArticles extends Component {
       this.getArticles();
     }
   }
-
   getArticles = () => {
     const topic = this.props.topic;
     const sort_by = this.state.sort_by;
@@ -72,4 +71,4 @@ class AllArticles extends Component {
   };
 }
 
-export default AllArticles;
+export default TopicsByTopic;

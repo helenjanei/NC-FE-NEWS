@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AllArticles from "./AllArticles";
+
 import Nav from "./Nav";
 
 class Home extends Component {
@@ -7,7 +7,6 @@ class Home extends Component {
     return (
       <div>
         <Nav />
-        <AllArticles />
       </div>
     );
   }
