@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 
 import * as api from "../utils/api";
+import ErrorHandler from "./ErrorHandler";
+import Loader from "./Loader";
 
 class CommentAdder extends Component {
   state = {
     body: "",
     err: "",
+    isLoading: true,
   };
 
   handleInputChange = (event) => {
@@ -35,8 +38,9 @@ class CommentAdder extends Component {
   };
 
   render() {
-    const { body } = this.state;
-
+    const { body, err, isLoading } = this.state;
+    if (isLoading) return <Loader />;
+    if (err) return <ErrorHandler msg={err} />;
     return (
       <form onSubmit={this.handleSubmitForm} className="comment-adder">
         <textarea

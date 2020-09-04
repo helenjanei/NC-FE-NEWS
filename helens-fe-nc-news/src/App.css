@@ -62,7 +62,50 @@ button:active {
   top: 1px;
 }
 
+.img-cat-burglar {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px;
+  border-radius: 8px;
+}
 
+.gallery {
+  border: 6px solid #ccc;
+  border-radius: 8px;
+}
+
+.gallery:hover {
+  border: 1px solid #777;
+}
+
+.image-description {
+  padding: 15px;
+  text-align: center;
+}
+
+.responsive {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 10px 10px;
+
+
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
+}
 
 .header {
   font-family: "Oswald", sans-serif;
@@ -231,22 +274,9 @@ button:active {
 }
 
 .loader {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-
-.loader div {
-  position: absolute;
-  border: 4px solid #fff;
-  opacity: 1;
-  border-radius: 50%;
-  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-}
-
-.loader div:nth-child(2) {
-  animation-delay: -0.5s;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 10px;
 }
 
 .comment-box {

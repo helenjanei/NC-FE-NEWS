@@ -87,7 +87,7 @@ export const getArticlesByTopic = (topic) => {
 };
 
 export const getUserByUsername = (username) => {
-  return axios.get(`/users/${username}`).then((res) => {
-    return res.data.user;
+  return axios.get(`/users/${username}`).then(({ data: { user } }) => {
+    return user;
   });
 };

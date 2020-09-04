@@ -36,7 +36,7 @@ class App extends Component {
           <ArticleById path="/articles/:article_id" username={username} />
           <Topics path="/topics" username={username} />
           <TopicsById path="/topics/:topic" username={username} />
-          <User path="/users/jessjelly" />
+          <User path="/users/:username" username={username} />
           <Login path="/login" />
 
           <ErrorHandler default />

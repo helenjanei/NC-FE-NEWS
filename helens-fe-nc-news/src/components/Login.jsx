@@ -5,7 +5,7 @@ class Login extends Component {
     return (
       <div>
         <form action="" onSubmit={this.handleLoginSubmit}>
-          <label htmlFor="users">Login</label>
+          <label>Login</label>
 
           <input type="submit" value="Login" />
         </form>

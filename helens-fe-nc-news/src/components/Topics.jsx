@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import * as api from "../utils/api";
 import Loader from "./Loader";
+import Nav from "./Nav";
+import ErrorHandler from "./ErrorHandler";
 
 class TopicList extends Component {
   state = {
     topics: [],
     isLoading: true,
+    err: "",
   };
 
   componentDidMount() {
@@ -20,20 +23,18 @@ class TopicList extends Component {
   }
 
   render() {
-    const { topics, isLoading } = this.state;
-
-    let navClasses = "topicLinks";
-
+    const { topics, isLoading, err } = this.state;
     if (isLoading) return <Loader />;
+    if (err) return <ErrorHandler msg={err} />;
     return (
       <div>
-        {" "}
+        <Nav />
         <h2>Topics:</h2>
         <nav className="nav">
           <ul>
             {topics.map((topic) => {
               return (
-                <li key={topic.slug} onClick={this.hideNav}>
+                <li key={topic.slug}>
                   <Link to={`/topics/${topic.slug}`} className="nav-sub-topics">
                     <p>{topic.slug}</p>
                   </Link>

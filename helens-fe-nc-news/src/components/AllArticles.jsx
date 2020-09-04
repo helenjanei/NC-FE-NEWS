@@ -26,7 +26,7 @@ class AllArticles extends Component {
         <ul className="all-articles">
           {this.state.articles.map((article) => {
             return (
-              <div>
+              <div key={article.article_id}>
                 <div className="article-wrapper">
                   <div className="article">
                     <ArticleCard key={article.article_id} {...article} />
